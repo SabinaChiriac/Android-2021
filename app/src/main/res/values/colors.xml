@@ -10,5 +10,8 @@
     <color name="green">#6BCF6F</color>
     <color name="blue">#1433A5</color>
     <color name="red">#A60F0F</color>
+    <color name="light_red">#E45D45</color>
+    <color name="purple">#AE40FB</color>
+
     <color name="white_alpha50">#80FFFFFF</color>
 </resources>

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/purple"
     tools:context=".fragments.HomepageFragment">
 
     <View
@@ -17,12 +18,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.4" />
 
-    <Button
+    <TextView
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_button_background"
         android:text="@string/login"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingTop="@dimen/default_space_half"
+        android:paddingBottom="@dimen/default_space_half"
         android:textColor="@color/selector_white_alpha"
         app:layout_constraintBottom_toTopOf="@+id/btn_register"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +37,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintWidth_percent="0.8"
+        android:textAllCaps="true"
         />
 
     <TextView
