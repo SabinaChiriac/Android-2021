@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "1099395452642",
-    "project_id": "android-class-playground",
-    "storage_bucket": "android-class-playground.appspot.com"
+    "project_number": "34580233752",
+    "project_id": "childhood-friends",
+    "storage_bucket": "childhood-friends.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1099395452642:android:504071aa6762d38c5a18bb",
+        "mobilesdk_app_id": "1:34580233752:android:f840a367c19a16f25e4d6d",
         "android_client_info": {
-          "package_name": "com.example.liste"
+          "package_name": "com.example.childhoodfriends"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1099395452642-v0ao7ii84hfr9k8tv6qgo6r45gdtfiaq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.liste",
-            "certificate_hash": "f42321cbf102780dc0ab5ec404ba3f70fab00ea3"
-          }
-        },
-        {
-          "client_id": "1099395452642-m6gkn00bbd947t3v9raqqmh6k2e9seqq.apps.googleusercontent.com",
+          "client_id": "34580233752-i50qr16vojrllqhj4vevr6bpjhfbpui2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyChLaNoLg0f963kjEfUAp5C5Dw3eOygwmk"
+          "current_key": "AIzaSyCucYdkaB2R0CdrJGIUM9XNWMnYPS3xyFk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1099395452642-m6gkn00bbd947t3v9raqqmh6k2e9seqq.apps.googleusercontent.com",
+              "client_id": "34580233752-i50qr16vojrllqhj4vevr6bpjhfbpui2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
