@@ -10,4 +10,13 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
 
+    <string name="hint_name">Add your name here...</string>
+    <string name="hint_city">Add your city here...</string>
+    <string name="hint_neighborhood">Add your neighborhood here...</string>
+    <string name="hint_email">Add your email here...</string>
+    <string name="hint_school">Add your school here...</string>
+    <string name="hint_description">Add your description here...</string>
+    <string name="hint_freq_places">Add your frequented places here...</string>
+    <string name="hint_birthday">Add your birthday here...</string>
+
 </resources>

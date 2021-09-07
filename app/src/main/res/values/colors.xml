@@ -12,6 +12,7 @@
     <color name="red">#A60F0F</color>
     <color name="light_red">#E45D45</color>
     <color name="purple">#AE40FB</color>
+    <color name="light_yellow">#F1F64D</color>
 
     <color name="white_alpha50">#80FFFFFF</color>
 </resources>

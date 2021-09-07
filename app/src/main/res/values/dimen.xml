@@ -3,5 +3,5 @@
     <dimen name="default_space">16dp</dimen>
     <dimen name="default_space_half">8dp</dimen>
 
-    <dimen name="title_size">20sp</dimen>
+    <dimen name="name_size">20sp</dimen>
 </resources>
