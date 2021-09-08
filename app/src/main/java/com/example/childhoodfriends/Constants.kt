@@ -1,4 +1,4 @@
-package com.example.childhoodfriends.models
+package com.example.childhoodfriends
 
 class Constants {
     companion object {

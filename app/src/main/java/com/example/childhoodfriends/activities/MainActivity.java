@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentActivit
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fly_container, HomepageFragment.newInstance(), HomepageFragment.TAG_FRAGMENT_HOMEPAGE);
+        fragmentTransaction.add(R.id.login_register, HomepageFragment.newInstance(), HomepageFragment.TAG_FRAGMENT_HOMEPAGE);
         fragmentTransaction.commit();
     }
 
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentActivit
         }
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fly_container, fragment,TAG);
+        fragmentTransaction.replace(R.id.login_register, fragment,TAG);
         fragmentTransaction.commit();
     }
 }

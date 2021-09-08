@@ -1,4 +1,4 @@
-package com.example.childhoodfriends.models;
+package com.example.childhoodfriends;
 
 import android.content.Context;
 import android.graphics.Bitmap;
