@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.childhoodfriends.R;
 import com.example.childhoodfriends.activities.LoginRegisterActivity;
@@ -23,6 +25,7 @@ public class WelcomeFragment extends Fragment{
 
     private OnFragmentActivityCommunication activityCommunication;
 
+    Button getStartedBtn;
     public static WelcomeFragment newInstance() {
         Bundle args = new Bundle();
 
@@ -31,6 +34,11 @@ public class WelcomeFragment extends Fragment{
         return fragment;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.fragment_welcome);
+    }
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -46,18 +54,16 @@ public class WelcomeFragment extends Fragment{
         return inflater.inflate(R.layout.fragment_welcome, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.btn_get_started).setOnClickListener(v -> {
-            goToLoginRegisterActivity();
+        view.findViewById(R.id.btn_get_started).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(WelcomeFragment.this)
+                        .navigate(R.id.action_WelcomeFrag_to_LoginRegister);
+            }
         });
     }
 
-    private void goToLoginRegisterActivity() {
-      startActivity(new Intent(getActivity(), LoginRegisterActivity.class));
-        Objects.requireNonNull(getActivity()).finish();
-
-    }
 }

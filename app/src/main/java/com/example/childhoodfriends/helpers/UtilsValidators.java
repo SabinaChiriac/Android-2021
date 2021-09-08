@@ -1,4 +1,4 @@
-package com.example.liste.helpers;
+package com.example.childhoodfriends.helpers;
 
 import android.text.TextUtils;
 

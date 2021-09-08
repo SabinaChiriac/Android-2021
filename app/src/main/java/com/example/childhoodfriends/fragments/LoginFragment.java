@@ -95,14 +95,14 @@ public class LoginFragment extends Fragment {
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        if(!com.example.liste.helpers.UtilsValidators.isValidEmail(email)) {
+        if(!com.example.childhoodfriends.helpers.UtilsValidators.isValidEmail(email)) {
             emailEditText.setError("Invalid Email");
             return;
         } else {
             emailEditText.setError(null);
         }
 
-        if(!com.example.liste.helpers.UtilsValidators.isValidPassword(password)) {
+        if(!com.example.childhoodfriends.helpers.UtilsValidators.isValidPassword(password)) {
             passwordEditText.setError("Invalid Password");
             return;
         } else {

@@ -21,7 +21,7 @@ import com.example.childhoodfriends.R;
 import com.example.childhoodfriends.activities.MainActivity;
 import com.example.childhoodfriends.models.Constants;
 import com.example.childhoodfriends.models.VolleyConfigSingleton;
-import com.example.liste.helpers.UtilsValidators;
+import com.example.childhoodfriends.helpers.UtilsValidators;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

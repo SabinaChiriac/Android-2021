@@ -2,7 +2,6 @@ package com.example.childhoodfriends.activities;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,7 +30,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fly_container, HomepageFragment.newInstance(), WelcomeFragment.TAG_FRAGMENT_WELCOME);
+        fragmentTransaction.add(R.id.login_register, HomepageFragment.newInstance(), WelcomeFragment.TAG_FRAGMENT_WELCOME);
         fragmentTransaction.commit();
     }
 
@@ -55,7 +54,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         }
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fly_container, fragment,TAG);
+        fragmentTransaction.replace(R.id.login_register, fragment,TAG);
         fragmentTransaction.commit();
     }
 }
