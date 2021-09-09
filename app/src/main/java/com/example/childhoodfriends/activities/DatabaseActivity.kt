@@ -10,11 +10,19 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.childhoodfriends.Constants.Companion.ARG_FB_PERSONS
 import com.example.childhoodfriends.adapters.PersonAdapter
 import com.example.childhoodfriends.data.PersonRepository
 import com.example.childhoodfriends.helpers.errorLog
 import com.example.childhoodfriends.models.dbEntities.PersonItem
 import com.example.childhoodfriends.models.dbEntities.PersonItemElement
+import com.example.childhoodfriends.models.dbEntities.PersonItemElementFB
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class DatabaseActivity : AppCompatActivity() {
 
@@ -24,18 +32,57 @@ class DatabaseActivity : AppCompatActivity() {
     private var personAdapter: PersonAdapter? = null
     private var buttonMyAccount: Button? = null
     private var buttonSearch: Button? = null
+    private var buttonAdd: Button? = null
 
     private val personList by lazy {
         ArrayList<PersonItemElement>()
     }
 
+    private lateinit var database: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        database = Firebase.database.reference
         setContentView(R.layout.activity_local_data_base)
+
         setupViews()
-
-
     }
+
+    override fun onStart() {
+        super.onStart()
+        database.addValueEventListener(personListener)
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        database.removeEventListener(personListener)
+    }
+
+    val personListener = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            // Get Post object and use the values to update the UI
+            personList.clear()
+
+            val personsSnapshot = dataSnapshot.child(ARG_FB_PERSONS)
+            personsSnapshot?.children?.forEach { itemSnapshot ->
+                val personItemFB = itemSnapshot.getValue(PersonItemElementFB::class.java)
+                personItemFB?.convert()?.let { personItem ->
+                    personList.add(personItem.convert())
+                }
+            }
+
+            personAdapter?.notifyDataSetChanged()
+            // ...
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            // Getting Post failed, log a message
+            // Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+        }
+    }
+
     fun setupViews(){
         setupRecyclerView()
 
@@ -47,6 +94,11 @@ class DatabaseActivity : AppCompatActivity() {
         buttonSearch = findViewById(R.id.btn_search)
         buttonSearch?.setOnClickListener {
             getAllPersonsByCity()
+        }
+
+        buttonAdd = findViewById(R.id.add)
+        buttonAdd?.setOnClickListener {
+           // insertPerson()
         }
     }
 

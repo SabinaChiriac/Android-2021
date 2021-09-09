@@ -12,7 +12,6 @@ class Constants {
         const val ARG_ACCESS_TOKEN = "accessToken"
         const val ARG_AUTHORIZATION = "Authorization"
 
-
-
+        const val ARG_FB_PERSONS = "persons"
     }
 }

@@ -17,6 +17,10 @@ import androidx.fragment.app.Fragment;
 
 
 import com.example.childhoodfriends.R;
+import com.example.childhoodfriends.models.dbEntities.PersonItem;
+import com.example.childhoodfriends.models.dbEntities.PersonItemElement;
+import com.example.childhoodfriends.models.dbEntities.PersonItemElementFB;
+import com.google.firebase.database.DatabaseReference;
 
 
 public class MyAccountFragment extends Fragment {
@@ -31,7 +35,9 @@ public class MyAccountFragment extends Fragment {
     private EditText editTextDescription;
     private EditText editTextFreqPlaces;
     private EditText editTextBirthday;
-    private Button btn_Register;
+    private Button btnAdd;
+
+    private DatabaseReference database;
 
     public static MyAccountFragment newInstance() {
         Bundle args = new Bundle();
@@ -51,6 +57,62 @@ public class MyAccountFragment extends Fragment {
     public void onStart() {
         super.onStart();
        
+    }
+
+    public void insertPerson() {
+        String name = editTextName.getText().toString();
+        if(name.isEmpty())
+            editTextName.setError("Required field!");
+            else
+                editTextName.setError(null);
+
+        String city = editTextCity.getText().toString();
+        if(city.isEmpty())
+            editTextCity.setError("Required field!");
+        else
+            editTextCity.setError(null);
+
+        String neighborhood = editTextNeighborhood.getText().toString();
+        if(neighborhood.isEmpty())
+            editTextNeighborhood.setError("Required field!");
+        else
+            editTextNeighborhood.setError(null);
+
+        String email = editTextEmail.getText().toString();
+        if(email.isEmpty())
+            editTextEmail.setError("Required field!");
+        else
+            editTextEmail.setError(null);
+
+        String school = editTextSchool.getText().toString();
+        if(school.isEmpty())
+            editTextSchool.setError("Required field!");
+        else
+            editTextSchool.setError(null);
+
+        String description = editTextDescription.getText().toString();
+        if(description.isEmpty())
+            editTextDescription.setError("Required field!");
+        else
+            editTextDescription.setError(null);
+
+        String freq_places = editTextFreqPlaces.getText().toString();
+        if(freq_places.isEmpty())
+            editTextFreqPlaces.setError("Required field!");
+        else
+            editTextFreqPlaces.setError(null);
+
+        String birthday = editTextBirthday.getText().toString();
+        if(birthday.isEmpty())
+            editTextBirthday.setError("Required field!");
+        else
+            editTextBirthday.setError(null);
+
+
+        PersonItemElementFB personItemFB = new PersonItemElementFB(name, city, neighborhood, email,
+                school, description, freq_places, birthday);
+
+
     }
 
     @Nullable
@@ -73,7 +135,7 @@ public class MyAccountFragment extends Fragment {
         editTextDescription = view.findViewById(R.id.editable_description);
         editTextFreqPlaces = view.findViewById(R.id.editable_freq_places);
         editTextBirthday = view.findViewById(R.id.editable_birthday);
-        btn_Register = view.findViewById(R.id.btn_register);
+        btnAdd = view.findViewById(R.id.btn_add);
         progressBar = view.findViewById(R.id.pb_loading);
 
     }
