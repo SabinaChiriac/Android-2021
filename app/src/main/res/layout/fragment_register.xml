@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/edt_email"
         app:layout_constraintWidth_percent="0.8" />
 
-    <TextView
+    <Button
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

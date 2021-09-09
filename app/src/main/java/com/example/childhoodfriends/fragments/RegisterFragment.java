@@ -1,5 +1,6 @@
 package com.example.childhoodfriends.fragments;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -22,6 +25,7 @@ import com.example.childhoodfriends.Constants;
 import com.example.childhoodfriends.VolleyConfigSingleton;
 import com.example.childhoodfriends.activities.DatabaseActivity;
 import com.example.childhoodfriends.helpers.UtilsValidators;
+import com.example.childhoodfriends.interfaces.OnFragmentActivityCommunication;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,14 +35,17 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 public class RegisterFragment extends Fragment {
 
     public static final String TAG_FRAGMENT_REGISTER = "TAG_FRAGMENT_REGISTER";
-
+    private OnFragmentActivityCommunication activityCommunication;
     private FirebaseAuth mAuth;
 
     private EditText emailEditText;
     private EditText passwordEditText;
+    private Button buttonRegister;
 
 
     public static RegisterFragment newInstance() {
@@ -48,6 +55,17 @@ public class RegisterFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    private void ClickMe() {
+        NotificationCompat.Builder mBuilder;
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Started notification")
+                .setContentText("Successfully registered.");
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, mBuilder.build());
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +73,14 @@ public class RegisterFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
     }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
+        if(context instanceof OnFragmentActivityCommunication) {
+            activityCommunication = (OnFragmentActivityCommunication) context;
+        }
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -78,6 +103,16 @@ public class RegisterFragment extends Fragment {
 
         view.findViewById(R.id.btn_register).setOnClickListener(v -> {
             validateEmailAndPassword();
+        });
+        buttonRegister=view.findViewById(R.id.btn_register);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                goToDatabaseActivity();
+            }
+
+
         });
 
 
@@ -198,6 +233,7 @@ public class RegisterFragment extends Fragment {
     private void goToDatabaseActivity() {
         startActivity(new Intent(getActivity(), DatabaseActivity.class));
         requireActivity().finish();
+        ClickMe();
     }
 
 }

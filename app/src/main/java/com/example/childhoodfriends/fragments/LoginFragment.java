@@ -1,5 +1,6 @@
 package com.example.childhoodfriends.fragments;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,11 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -21,6 +24,7 @@ import com.example.childhoodfriends.R;
 import com.example.childhoodfriends.Constants;
 import com.example.childhoodfriends.VolleyConfigSingleton;
 import com.example.childhoodfriends.activities.DatabaseActivity;
+import com.example.childhoodfriends.interfaces.OnFragmentActivityCommunication;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,13 +34,16 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 public class LoginFragment extends Fragment {
 
     public static final String TAG_FRAGMENT_LOGIN = "TAG_FRAGMENT_LOGIN";
-
+    private OnFragmentActivityCommunication activityCommunication;
     private FirebaseAuth mAuth;
     private EditText emailEditText;
     private EditText passwordEditText;
+    private Button button_login;
 
     public static LoginFragment newInstance() {
         Bundle args = new Bundle();
@@ -51,8 +58,20 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-    }
 
+
+    }
+    private void ClickMe() {
+        NotificationCompat.Builder mBuilder;
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Started notification")
+                .setContentText("Successfully Log in.");
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, mBuilder.build());
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -61,7 +80,14 @@ public class LoginFragment extends Fragment {
 
         }
     }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
 
+        if(context instanceof OnFragmentActivityCommunication) {
+            activityCommunication = (OnFragmentActivityCommunication) context;
+        }
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,6 +100,16 @@ public class LoginFragment extends Fragment {
 
         view.findViewById(R.id.btn_login).setOnClickListener(v -> {
             validateEmailAndPassword();
+        });
+        button_login =view.findViewById( R.id.btn_login);
+        button_login.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                goToDatabaseActivity();
+            }
+
+
         });
 
 
@@ -163,6 +199,7 @@ public class LoginFragment extends Fragment {
     private void goToDatabaseActivity() {
         startActivity(new Intent(getActivity(), DatabaseActivity.class));
         requireActivity().finish();
+        ClickMe();
     }
 
     private void saveAccessTokenToSharedPrefs(String token) {
