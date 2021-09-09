@@ -21,11 +21,13 @@ public interface PersonDAO {
     @Delete
     void Delete(PersonItem personItem);
 
-    @Query("DELETE FROM personitem WHERE name=:personName")
+    @Query("DELETE FROM personItem WHERE name=:personName")
     void deleteByName(String personName);
 
     @Update
     void Update(PersonItem personItem);
 
+    @Query("SELECT * FROM personItem WHERE city=:personCity and neighborhood=:personNeighborhood")
+    List<PersonItem> getPersonsByCity(String personCity, String personNeighborhood);
 
 }

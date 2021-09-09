@@ -6,6 +6,7 @@ import com.example.childhoodfriends.ApplicationController;
 import com.example.childhoodfriends.data.tasks.DeleteByNamePersonTask;
 import com.example.childhoodfriends.data.tasks.DeletePersonTask;
 import com.example.childhoodfriends.data.tasks.GetAllPersonsTask;
+import com.example.childhoodfriends.data.tasks.GetPersonsByCityTask;
 import com.example.childhoodfriends.data.tasks.InsertPersonTask;
 import com.example.childhoodfriends.data.tasks.UpdatePersonTask;
 import com.example.childhoodfriends.models.dbEntities.PersonItem;
@@ -33,6 +34,9 @@ public class PersonRepository  {
 
     public void getAllPersons(OnGetPersonListener listener) {
         new GetAllPersonsTask(personDatabase, listener).execute();
+    }
+    public void getPersonsbyCity(String city, String neighborhood, OnGetPersonListener listener) {
+        new GetPersonsByCityTask(personDatabase, listener).execute();
     }
     public void updatePerson(PersonItem personItem,OnSuccesListener listener){
         new UpdatePersonTask(personDatabase,listener).execute(personItem);
