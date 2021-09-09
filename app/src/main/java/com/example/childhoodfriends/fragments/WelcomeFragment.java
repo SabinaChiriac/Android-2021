@@ -1,5 +1,6 @@
 package com.example.childhoodfriends.fragments;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -19,13 +22,15 @@ import com.example.childhoodfriends.interfaces.OnFragmentActivityCommunication;
 
 import java.util.Objects;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 public class WelcomeFragment extends Fragment{
 
     public static final String TAG_FRAGMENT_WELCOME = "TAG_FRAGMENT_WELCOME";
 
     private OnFragmentActivityCommunication activityCommunication;
 
-    Button getStartedBtn;
+
     public static WelcomeFragment newInstance() {
         Bundle args = new Bundle();
 
@@ -37,7 +42,7 @@ public class WelcomeFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_welcome);
+
     }
     @Override
     public void onAttach(@NonNull Context context) {
@@ -57,11 +62,13 @@ public class WelcomeFragment extends Fragment{
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.btn_get_started).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_get_started);
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(WelcomeFragment.this)
                         .navigate(R.id.action_WelcomeFrag_to_LoginRegister);
+
             }
         });
     }

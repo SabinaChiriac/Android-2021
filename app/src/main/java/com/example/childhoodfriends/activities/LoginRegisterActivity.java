@@ -12,11 +12,12 @@ import com.example.childhoodfriends.fragments.HomepageFragment;
 import com.example.childhoodfriends.fragments.LoginFragment;
 import com.example.childhoodfriends.fragments.RegisterFragment;
 import com.example.childhoodfriends.fragments.WelcomeFragment;
+import com.example.childhoodfriends.interfaces.OnFragmentActivityCommunication;
 
 import static com.example.childhoodfriends.fragments.LoginFragment.TAG_FRAGMENT_LOGIN;
 import static com.example.childhoodfriends.fragments.RegisterFragment.TAG_FRAGMENT_REGISTER;
 
-public class LoginRegisterActivity extends AppCompatActivity {
+public class LoginRegisterActivity extends AppCompatActivity implements OnFragmentActivityCommunication {
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
