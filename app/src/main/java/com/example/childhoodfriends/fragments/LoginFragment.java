@@ -1,6 +1,7 @@
 package com.example.childhoodfriends.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.childhoodfriends.R;
 import com.example.childhoodfriends.Constants;
 import com.example.childhoodfriends.VolleyConfigSingleton;
+import com.example.childhoodfriends.activities.DatabaseActivity;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -159,11 +161,12 @@ public class LoginFragment extends Fragment {
     }
 
     private void goToDatabaseActivity() {
-        //TO DO
+        startActivity(new Intent(getActivity(), DatabaseActivity.class));
+        requireActivity().finish();
     }
 
     private void saveAccessTokenToSharedPrefs(String token) {
-        SharedPreferences sharedPrefs = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.ARG_SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = requireContext().getSharedPreferences(Constants.ARG_SHARED_PREFS_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString(Constants.ARG_ACCESS_TOKEN, token);
         editor.apply();

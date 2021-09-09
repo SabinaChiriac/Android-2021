@@ -18,9 +18,9 @@ import androidx.fragment.app.Fragment;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.childhoodfriends.R;
-import com.example.childhoodfriends.activities.MainActivity;
 import com.example.childhoodfriends.Constants;
 import com.example.childhoodfriends.VolleyConfigSingleton;
+import com.example.childhoodfriends.activities.DatabaseActivity;
 import com.example.childhoodfriends.helpers.UtilsValidators;
 import com.google.firebase.BuildConfig;
 import com.google.firebase.auth.FirebaseAuth;
@@ -174,7 +174,7 @@ public class RegisterFragment extends Fragment {
                             Toast.LENGTH_SHORT).show();
                 }
         );
-        VolleyConfigSingleton.getInstance(Objects.requireNonNull(getActivity()).getApplicationContext()).addToRequestQueue(jsonRequest);
+        VolleyConfigSingleton.getInstance(requireActivity().getApplicationContext()).addToRequestQueue(jsonRequest);
     }
 
     private void handleResponse(JSONObject response) {
@@ -189,15 +189,15 @@ public class RegisterFragment extends Fragment {
     }
 
     private void saveAccessTokenToSharedPrefs(String accessToken) {
-        SharedPreferences sharedPrefs = Objects.requireNonNull(getContext()).getSharedPreferences(Constants.ARG_SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+        SharedPreferences sharedPrefs = requireContext().getSharedPreferences(Constants.ARG_SHARED_PREFS_KEY, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString(Constants.ARG_ACCESS_TOKEN, accessToken);
         editor.apply();
     }
 
     private void goToDatabaseActivity() {
-        startActivity(new Intent(getActivity(), MainActivity.class));
-        Objects.requireNonNull(getActivity()).finish();
+        startActivity(new Intent(getActivity(), DatabaseActivity.class));
+        requireActivity().finish();
     }
 
 }

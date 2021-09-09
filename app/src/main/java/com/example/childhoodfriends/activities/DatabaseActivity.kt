@@ -1,4 +1,7 @@
 package com.example.childhoodfriends.activities
 
-class DatabaseActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class DatabaseActivity : AppCompatActivity() {
+
 }
