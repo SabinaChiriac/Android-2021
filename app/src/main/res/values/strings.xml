@@ -21,5 +21,6 @@
     <string name="hint_description">Add your description here...</string>
     <string name="hint_freq_places">Add your frequented places here...</string>
     <string name="hint_birthday">Add your birthday here...</string>
+    <string name="hint_password">Add your password here...</string>
 
 </resources>

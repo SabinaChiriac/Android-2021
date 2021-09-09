@@ -1,8 +1,10 @@
 package com.example.childhoodfriends.data;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.childhoodfriends.models.dbEntities.PersonItem;
 
@@ -15,5 +17,15 @@ public interface PersonDAO {
 
     @Insert
     void insertPerson(PersonItem personItem);
+
+    @Delete
+    void Delete(PersonItem personItem);
+
+    @Query("DELETE FROM personitem WHERE name=:personName")
+    void deleteByName(String personName);
+
+    @Update
+    void Update(PersonItem personItem);
+
 
 }
