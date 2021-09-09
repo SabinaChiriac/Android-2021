@@ -28,6 +28,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        onAddWelcomeFragment();
+
         btnGetStarted = findViewById(R.id.btn_get_started);
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +38,6 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        onAddWelcomeFragment();
     }
 
     private void ClickMe() {

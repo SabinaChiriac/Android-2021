@@ -55,17 +55,6 @@ public class RegisterFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    private void ClickMe() {
-        NotificationCompat.Builder mBuilder;
-        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Started notification")
-                .setContentText("Successfully registered.");
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0, mBuilder.build());
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -233,7 +222,6 @@ public class RegisterFragment extends Fragment {
     private void goToDatabaseActivity() {
         startActivity(new Intent(getActivity(), DatabaseActivity.class));
         requireActivity().finish();
-        ClickMe();
     }
 
 }

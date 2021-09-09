@@ -1,8 +1,13 @@
 package com.example.childhoodfriends.activities;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,12 +24,55 @@ import static com.example.childhoodfriends.fragments.RegisterFragment.TAG_FRAGME
 
 public class LoginRegisterActivity extends AppCompatActivity implements OnFragmentActivityCommunication {
 
+    private Button btnLogin;
+    private Button btnRegister;
+
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
 
         onAddHomepageFragment();
+
+        btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClickMeLogin();
+            }
+        });
+
+        btnRegister = findViewById(R.id.btn_register);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClickMeRegister();
+            }
+        });
+    }
+
+    private void ClickMeLogin() {
+        NotificationCompat.Builder mBuilder;
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Log in notification")
+                .setContentText("Successfully log in.");
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, mBuilder.build());
+    }
+
+    private void ClickMeRegister() {
+        NotificationCompat.Builder mBuilder;
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Register notification")
+                .setContentText("Successfully registered.");
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, mBuilder.build());
     }
 
     private void onAddHomepageFragment() {

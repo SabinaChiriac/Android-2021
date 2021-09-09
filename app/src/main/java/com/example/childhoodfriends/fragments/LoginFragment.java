@@ -58,20 +58,8 @@ public class LoginFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-
-
     }
-    private void ClickMe() {
-        NotificationCompat.Builder mBuilder;
-        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Started notification")
-                .setContentText("Successfully Log in.");
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.notify(0, mBuilder.build());
-    }
     @Override
     public void onStart() {
         super.onStart();
@@ -182,7 +170,7 @@ public class LoginFragment extends Fragment {
                 }
         );
 
-        VolleyConfigSingleton.getInstance(Objects.requireNonNull(getActivity()).getApplicationContext()).addToRequestQueue(jsonRequest);
+        VolleyConfigSingleton.getInstance(requireActivity().getApplicationContext()).addToRequestQueue(jsonRequest);
     }
 
     private void handleResponse(JSONObject response) {
@@ -199,7 +187,6 @@ public class LoginFragment extends Fragment {
     private void goToDatabaseActivity() {
         startActivity(new Intent(getActivity(), DatabaseActivity.class));
         requireActivity().finish();
-        ClickMe();
     }
 
     private void saveAccessTokenToSharedPrefs(String token) {
