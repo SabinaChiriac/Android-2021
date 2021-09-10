@@ -62,15 +62,36 @@ public class WelcomeFragment extends Fragment{
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.btn_get_started);
-        view.setOnClickListener(new View.OnClickListener() {
+        Button  btnGetStarted = (Button) view.findViewById(R.id.btn_get_started);
+        btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(WelcomeFragment.this)
-                        .navigate(R.id.action_WelcomeFrag_to_LoginRegister);
+                        .navigate(R.id.login_register);
 
             }
         });
+
+
+//      Button  btnGetStarted = (Button) view.findViewById(R.id.btn_get_started);
+//        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ClickMe();
+//            }
+//        });
+    }
+
+    private void ClickMe() {
+        NotificationCompat.Builder mBuilder;
+        mBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(getContext())
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("Started notification")
+                .setContentText("The application <Childhood friends> has started.");
+
+        NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, mBuilder.build());
     }
 
 }

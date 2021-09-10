@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="action_WelcomeFrag_to_LoginRegister" type="id"/>
+    <item name="fragment_homepage" type="id"/>
 
 </resources>

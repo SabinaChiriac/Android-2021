@@ -137,6 +137,7 @@ public class MyAccountFragment extends Fragment {
         editTextBirthday = view.findViewById(R.id.editable_birthday);
         btnAdd = view.findViewById(R.id.btn_add);
         progressBar = view.findViewById(R.id.pb_loading);
+        
 
     }
 }
